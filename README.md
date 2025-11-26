@@ -9,8 +9,19 @@ This template equips you with a foundational Next.js application integrated with
 ## Features
 
 - **Authentication**: Setup with Amazon Cognito for secure user authentication.
+- **Google SSO**: Support for Google Single Sign-On authentication.
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
 - **Database**: Real-time database powered by Amazon DynamoDB.
+
+## Google SSO Setup
+
+This application is configured to support Google Single Sign-On (SSO) authentication. For detailed setup instructions, see [GOOGLE_SSO_SETUP.md](GOOGLE_SSO_SETUP.md).
+
+Quick start:
+1. Create OAuth credentials in Google Cloud Console
+2. Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` environment variables
+3. Deploy to AWS Amplify
+4. Configure redirect URIs in Google Console
 
 ## Deploying to AWS
 

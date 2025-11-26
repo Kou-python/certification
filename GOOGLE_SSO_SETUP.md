@@ -33,26 +33,22 @@ Create a `.env` file in the root of your project (or configure in Amplify Consol
 ```bash
 GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=your-google-client-secret
+AMPLIFY_APP_URL=https://your-amplify-app-url.amplifyapp.com/
 ```
 
 **Important:** Never commit the `.env` file to version control. Add it to `.gitignore`.
+
+For local development, the `AMPLIFY_APP_URL` defaults to `http://localhost:3000/` if not set.
 
 ## Step 3: Update Amplify Auth Configuration
 
 The auth configuration has been updated in `amplify/auth/resource.ts` to include Google as an external provider.
 
-Make sure to update the callback and logout URLs in the configuration to match your actual Amplify app URL:
+The callback and logout URLs are configured using environment variables:
+- `http://localhost:3000/` for local development
+- `AMPLIFY_APP_URL` environment variable for production
 
-```typescript
-callbackUrls: [
-  'http://localhost:3000/',
-  'https://your-amplify-app-url.amplifyapp.com/',
-],
-logoutUrls: [
-  'http://localhost:3000/',
-  'https://your-amplify-app-url.amplifyapp.com/',
-],
-```
+No manual updates to the code are needed - just set the `AMPLIFY_APP_URL` environment variable to your deployed Amplify app URL.
 
 ## Step 4: Deploy to Amplify
 
@@ -61,6 +57,7 @@ logoutUrls: [
 3. In the Amplify Console, go to **Environment variables** and add:
    - `GOOGLE_CLIENT_ID`
    - `GOOGLE_CLIENT_SECRET`
+   - `AMPLIFY_APP_URL` (set to your Amplify app URL, e.g., `https://main.d3abcdefghijk.amplifyapp.com/`)
 4. Deploy your application
 5. After deployment, get the Cognito User Pool domain from the Amplify console
 6. Update your Google OAuth credentials with the correct Cognito redirect URI
